@@ -46,6 +46,8 @@ to = "/.netlify/functions/:splat"
 ## 🏆 H-1 
 
 ```sh
+* ENDPOINT:(PATH: "/h1")
+
 CREAR UN SERVERLESS QUE RESPONDA SI LA SOLICITUD ES DE TIPO "GET"
 
 output => {"content":"get"}
@@ -53,8 +55,10 @@ output => {"content":"get"}
 <br/>
 
 
-## 🏆 H-2
+## 🏆 H-2 (PATH: "/H2")
 ```sh
+* ENDPOINT:(PATH: "/h2")
+
 CREAR UN SERVERLESS QUE RESPONDA SI LA SOLICITUD ES DE TIPO "POST"
 
 output => {"content":"post"}
@@ -63,6 +67,8 @@ output => {"content":"post"}
 
 ## 🏆 H-3
 ```sh
+* ENDPOINT:(PATH: "/h3")
+
 CREAR UN SERVERLESS QUE RESPONDA SI LA SOLICITUD ES DE TIPO "PUT"
 
 output => {"content":"put"}
@@ -71,6 +77,8 @@ output => {"content":"put"}
 
 ## 🏆 H-4
 ```sh
+* ENDPOINT:(PATH: "/h4")
+
 CREAR UN SERVERLESS QUE RESPONDA SI LA SOLICITUD ES DE TIPO "DELETE"
 
 output => {"content":"delete"}
@@ -80,6 +88,8 @@ output => {"content":"delete"}
 
 ## 🏆 H-5
 ```sh
+* ENDPOINT:(PATH: "/h5")
+
 CREAR UN SERVERLESS QUE RESPONDA SI LA SOLICITUD ES DE TIPO "GET"
 EN CASO CONTRARIO RESPONDER CON LA SALIDA DE UN OBJECTO {} SIN PROPIEDADES
 
@@ -91,6 +101,8 @@ FALSE - output => {}
 
 ## 🏆 H-6
 ```sh
+* ENDPOINT:(PATH: "/h6")
+
 CREAR UN SERVERLESS QUE RESPONDA SI LA SOLICITUD CORRESPONDE CON ALGÚN METODO HTTP: "GET" | "POST" | "PUT" | "DELETE"
 - EN CASO CONTRARIO RESPONDER CON LA SALIDA DE UN OBJECTO {} SIN PROPIEDADES
 - EN LA OPCIÓN type ANEXAR EL TIPO DE METODO HTTP
@@ -103,6 +115,8 @@ FALSE - output => {}
 
 ## 🏆 H-7
 ```sh
+* ENDPOINT:(PATH: "/h7?email="..."&name="...")
+
 CREAR UN SERVERLESS QUE RESPONDA SI LA SOLICITUD ES DE TIPO "GET"
 SE DEBE ENVIAR EL VALOR DEL email, name MEDIANTE QUERY STRING
 
@@ -113,6 +127,8 @@ output => {"email":"query@domain.com", "name":"add a name"}
 
 ## 🏆 H-8
 ```sh
+* ENDPOINT:(PATH: "/h8")
+
 CREAR UN SERVERLESS QUE RESPONDA SI LA SOLICITUD ES DE TIPO "GET"
 SE DEBE ENVIAR EL VALOR DEL email, name MEDIANTE BODY
 
@@ -133,6 +149,8 @@ output => {"email":"body@domain.com", "alias":"add an alias"}
 
 ## 🏆 H-9
 ```sh
+* ENDPOINT:(PATH: "/h9?alias="...")
+
 CREAR UN SERVERLESS QUE RESPONDA SI LA SOLICITUD ES DE TIPO "GET"
 - SE DEBE ENVIAR EL VALOR DEL alias  MEDIANTE QUERY STRING
 - BUSCAR UN VALOR VALIDO DENTRO DEL ARRAY DE ALIAS Y MOSTRAR SU SALIDA
@@ -146,9 +164,11 @@ FALSE - output => {"payload":"not found"}
 ```
 <br/>
 
-{"payload":"data body"}
-## 🏆 H-10
+
+## 🏆 H-10 (PATH: "/")
 ```sh
+* ENDPOINT:(PATH: "/h10")
+
 CREAR UN SERVERLESS QUE RESPONDA SI LA SOLICITUD ES DE TIPO "GET"
 - SE DEBE ENVIAR EL VALOR DEL alias  MEDIANTE BODY
 - BUSCAR UN VALOR VALIDO DENTRO DEL ARRAY DE ALIAS Y MOSTRAR SU SALIDA
