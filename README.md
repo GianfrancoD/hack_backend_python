@@ -3,7 +3,11 @@
 
 <br/>
 
-📚 tutorial de netlify functions [tutorial](https://docs.netlify.com/functions/build/?fn-language=js)
+📚 tutorial de netlify functions oficial [tutorial](https://docs.netlify.com/functions/build/?fn-language=js)
+<br/>
+📚 tutorial de netlify functions-1 [tutorial](https://www.learnwithjason.dev/blog/serverless-functions/query-strings-serverless-functions)
+<br/>
+📚 tutorial de netlify functions-2 [tutorial](https://medium.com/better-practices/serverless-functions-the-fast-way-43d6128ff8d5))
 ---
 
 ```diff
