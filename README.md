@@ -1,13 +1,13 @@
 # SOCIAL OPLESK
-### 🏴‍☠️ HACKS - SERVERLESS - 1
+### 🏴‍☠️ HACKS - BACKEND - 1
 
 <br/>
 
-📚 tutorial de netlify functions oficial [tutorial](https://docs.netlify.com/functions/build/?fn-language=js)
+📚 tutorial de flask - 1 [tutorial](https://towardsdatascience.com/creating-restful-apis-using-flask-and-python-655bad51b24)
 <br/>
-📚 tutorial de netlify functions-1 [tutorial](https://www.learnwithjason.dev/blog/serverless-functions/query-strings-serverless-functions)
+📚 tutorial de flask - 2 [tutorial](https://www.moesif.com/blog/technical/api-development/Building-RESTful-API-with-Flask/)
 <br/>
-📚 tutorial de netlify functions-2 [tutorial](https://medium.com/better-practices/serverless-functions-the-fast-way-43d6128ff8d5))
+📚 tutorial de flask - 3 [tutorial](https://www.digitalocean.com/community/tutorials/processing-incoming-request-data-in-flask)
 ---
 
 ```diff
@@ -16,19 +16,11 @@
 
 ```diff
 * Instalar la dependencia de netlify:
-  npm install netlify-cli -g
+  npm install flask
 
-* Crear el archivo netlify.toml en el root del proyecto"
+* Crear el archivo app.py en modo debug
 
-* Configurar el archivo netlify.toml ejemplo:
-
-[build]
-functions = "functions"
-
-[[redirects]]
-from = "/*"
-status = 200
-to = "/.netlify/functions/:splat"
+* ejecutar el servidor en terminal: flask run --debug
 
 ```
 <br/>
@@ -39,8 +31,8 @@ to = "/.netlify/functions/:splat"
 | H-2      | {"content":"post"} |
 | H-3      | {"content":"put"} | 
 | H-4      | {"content":"delete"} |
-| H-5      | {"method":"get","content":"message"} |
-| H-6      | {"method":"type", "content":"message"}|
+| H-5      | {"method":"get","payload":"message"} |
+| H-6      | {"method":"type", "payload":"message"}|
 | H-7      | {"email":"query@domain.com", "name":"add a name"} |
 | H-8      | {"email":"body@domain.com", "alias":"add an alias"}  | 
 | H-9      | {"payload":"data query"} |
@@ -52,20 +44,26 @@ to = "/.netlify/functions/:splat"
 ```sh
 * ENDPOINT:(PATH: "/h1")
 
-CREAR UN SERVERLESS QUE RESPONDA SI LA SOLICITUD ES DE TIPO "GET"
+CREAR UN ENDPOINT QUE RESPONDA SI LA SOLICITUD ES DE TIPO "GET"
 
-output => {"content":"get"}
+METHOD:   "GET"
+TYPE: JSON
+
+output => {"payload":"get"}
 ```
 <br/>
 
 
-## 🏆 H-2 (PATH: "/H2")
+## 🏆 H-2
 ```sh
 * ENDPOINT:(PATH: "/h2")
 
-CREAR UN SERVERLESS QUE RESPONDA SI LA SOLICITUD ES DE TIPO "POST"
+CREAR UN ENDPOINT QUE RESPONDA SI LA SOLICITUD ES DE TIPO "POST"
 
-output => {"content":"post"}
+METHOD:   "POST"
+TYPE: JSON
+
+output => {"payload":"post"}
 ```
 <br/>
 
@@ -73,9 +71,12 @@ output => {"content":"post"}
 ```sh
 * ENDPOINT:(PATH: "/h3")
 
-CREAR UN SERVERLESS QUE RESPONDA SI LA SOLICITUD ES DE TIPO "PUT"
+CREAR UN ENDPOINT QUE RESPONDA SI LA SOLICITUD ES DE TIPO "PUT"
 
-output => {"content":"put"}
+METHOD:   "PUT"
+TYPE: JSON
+
+output => {"payload":"put"}
 ```
 <br/>
 
@@ -83,9 +84,13 @@ output => {"content":"put"}
 ```sh
 * ENDPOINT:(PATH: "/h4")
 
-CREAR UN SERVERLESS QUE RESPONDA SI LA SOLICITUD ES DE TIPO "DELETE"
+CREAR UN ENDOPOINT QUE RESPONDA SI LA SOLICITUD ES DE TIPO "DELETE"
 
-output => {"content":"delete"}
+ENDPOINT: /h4
+METHOD:   "DELETE"
+TYPE: JSON
+
+output => {"payload":"delete"}
 
 ```
 <br/>
@@ -94,10 +99,10 @@ output => {"content":"delete"}
 ```sh
 * ENDPOINT:(PATH: "/h5")
 
-CREAR UN SERVERLESS QUE RESPONDA SI LA SOLICITUD ES DE TIPO "GET"
+CREAR UN ENDPOINT QUE RESPONDA SI LA SOLICITUD ES DE TIPO "GET"
 EN CASO CONTRARIO RESPONDER CON LA SALIDA DE UN OBJETO {} SIN PROPIEDADES
 
-TRUE  - output => {"content":"delete"}
+TRUE  - output => {"payload":"success", "error": False}
 FALSE - output => {}
 ```
 <br/>
@@ -107,24 +112,28 @@ FALSE - output => {}
 ```sh
 * ENDPOINT:(PATH: "/h6")
 
-CREAR UN SERVERLESS QUE RESPONDA SI LA SOLICITUD CORRESPONDE CON ALGÚN METODO HTTP: "GET" | "POST" | "PUT" | "DELETE"
-- EN CASO CONTRARIO RESPONDER CON LA SALIDA DE UN OBJETO {} SIN PROPIEDADES
+CREAR UN ENDPOINT QUE RESPONDA SI LA SOLICITUD CORRESPONDE CON ALGÚN METODO HTTP: "GET" | "POST" | "PUT" | "DELETE"
+- EN CASO CONTRARIO RESPONDER CON LA SALIDA DE UN OBJETO sin payload data {} 
 - EN LA OPCIÓN type ANEXAR EL TIPO DE METODO HTTP
 - LA PROPIEDAD content EN method ESPECIFICAR EL METODO HTTP
 
-TRUE  - output => {"method":"type", "content":"message method"}
-FALSE - output => {}
+TRUE  - output => {"method":"type", "payload":"success, "error":False}
+FALSE - output => {"method":"type", "payload":None, "error":False}
 ```
 <br/>
 
 ## 🏆 H-7
 ```sh
-* ENDPOINT:(PATH: "/h7?email="..."&name="...")
+* ENDPOINT:(PATH: "/h7?email="....."&name=".....")
 
-CREAR UN SERVERLESS QUE RESPONDA SI LA SOLICITUD ES DE TIPO "GET"
+CREAR UN ENDPOINT QUE RESPONDA SI LA SOLICITUD ES DE TIPO "GET"
 SE DEBE ENVIAR EL VALOR DEL email, name MEDIANTE QUERY STRING
 
-output => {"email":"query@domain.com", "name":"add a name"}
+output => {
+            "payload":{"email":"foo@foo.com", "name":"fooziman"},
+            "error":{"available":False,"err_msg":None},
+            "status":200
+          }
 
 ```
 <br/>
@@ -133,19 +142,17 @@ output => {"email":"query@domain.com", "name":"add a name"}
 ```sh
 * ENDPOINT:(PATH: "/h8")
 
-CREAR UN SERVERLESS QUE RESPONDA SI LA SOLICITUD ES DE TIPO "GET"
+CREAR UN ENDPOINT QUE RESPONDA SI LA SOLICITUD ES DE TIPO "POST"
 SE DEBE ENVIAR EL VALOR DEL email, name MEDIANTE BODY
-
-- DEBES INSTALAR EL PAQUETE DE npm i middy
-  EJEMPLO: let middy = require("middy") 
-
-- PARA DAR EL FORMATO CORRECTO EN JSON, DEBES IMPORTAR EL MIDDLEWARE jsonBodyParser
-  EJEMPLO: let {jsonBodyParser} = require("middy/middlewares");
 
 - ENVIAR LOS DATOS EN UN JSON {"email","add an email", "alias":"add an alias"}
 
 
-output => {"email":"body@domain.com", "alias":"add an alias"}
+output => {
+            "payload":{"email":"foo@foo.com", "name":"fooziman"},
+            "error":{"available":False,"err_msg":None},
+            "status":200
+          }
 
 ```
 <br/>
@@ -155,30 +162,39 @@ output => {"email":"body@domain.com", "alias":"add an alias"}
 ```sh
 * ENDPOINT:(PATH: "/h9?alias="...")
 
-CREAR UN SERVERLESS QUE RESPONDA SI LA SOLICITUD ES DE TIPO "GET"
+CREAR UN ENDPOINT QUE RESPONDA SI LA SOLICITUD ES DE TIPO "GET"
 - SE DEBE ENVIAR EL VALOR DEL alias  MEDIANTE QUERY STRING
-- BUSCAR UN VALOR VALIDO DENTRO DEL ARRAY DE ALIAS Y MOSTRAR SU SALIDA
-- EN CASO DE NO ENCONTRAR EL alias EN EL ARRAY DE ALIAS ENVIAR UN MENSAJE DE not found
+- BUSCAR UN VALOR VALIDO DENTRO DE LA LISTA DE ALIAS Y MOSTRAR SU SALIDA
+- EN CASO DE NO ENCONTRAR EL alias EN LA LISTA DE ALIAS ENVIAR UN MENSAJE DE not found
 
 const Lista = ["foo","bar","baz","qux","fred"]
 
-TRUE - output => {"payload":"bar"}
-FALSE - output => {"payload":"not found"}
+
+TRUE - output => {
+            "payload":"bar",
+            "error":{"available":False,"err_msg":None},
+            "status":200
+          }
+
+
+FALSE - output => {
+            "payload":"not found",
+            "error":{"available":False,"err_msg":None},
+            "status":404
+          }
 
 ```
 <br/>
 
 
-## 🏆 H-10 (PATH: "/")
+## 🏆 H-10 (PATH: "/h10")
 ```sh
 * ENDPOINT:(PATH: "/h10")
 
-CREAR UN SERVERLESS QUE RESPONDA SI LA SOLICITUD ES DE TIPO "GET"
+CREAR UN ENDPOINT QUE RESPONDA SI LA SOLICITUD ES DE TIPO "POST"
 - SE DEBE ENVIAR EL VALOR DEL alias  MEDIANTE BODY
-- BUSCAR UN VALOR VALIDO DENTRO DEL ARRAY DE ALIAS Y MOSTRAR SU SALIDA
-- EN CASO DE NO ENCONTRAR EL alias EN EL ARRAY DE ALIAS ENVIAR UN MENSAJE DE not found
-- PARA DAR EL FORMATO CORRETO EN JSON, DEBES IMPORTAR EL MIDDLEWARE jsonBodyParser
-  EJEMPLO: let {jsonBodyParser} = require("middy/middlewares");
+- BUSCAR UN VALOR VALIDO DENTRO DE LA LISTA DE ALIAS Y MOSTRAR SU SALIDA
+- EN CASO DE NO ENCONTRAR EL alias EN LA LISTA DE ALIAS ENVIAR UN MENSAJE DE not found
 
 const Lista = ["foo","bar","baz","qux","fred"]
 
