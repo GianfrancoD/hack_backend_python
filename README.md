@@ -27,10 +27,10 @@
 
 |Hacks | Details | 
 |----------|---------|
-| H-1      | {"content":"get"} |
-| H-2      | {"content":"post"} |
-| H-3      | {"content":"put"} | 
-| H-4      | {"content":"delete"} |
+| H-1      | {"payload":"get"} |
+| H-2      | {"payload":"post"} |
+| H-3      | {"payload":"put"} | 
+| H-4      | {"payload":"delete"} |
 | H-5      | {"method":"get","payload":"message"} |
 | H-6      | {"method":"type", "payload":"message"}|
 | H-7      | {"email":"query@domain.com", "name":"add a name"} |
