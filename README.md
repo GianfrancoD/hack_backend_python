@@ -15,7 +15,7 @@
 ```
 
 ```diff
-* Instalar la dependencia de netlify:
+* Instalar el framework:
   npm install flask
 
 * Crear el archivo app.py en modo debug
