@@ -112,12 +112,12 @@ FALSE - output => {}
 ```sh
 * ENDPOINT:(PATH: "/h6")
 
-CREAR UN ENDPOINT QUE RESPONDA SI LA SOLICITUD CORRESPONDE CON ALGÚN METODO HTTP: "GET" | "POST" | "PUT" | "DELETE"
+CREAR UN ENDPOINT QUE RESPONDA SI LA SOLICITUD CORRESPONDE CON ALGÚN METODO HTTP: "GET" | "POST"| "DELETE"
 - EN CASO CONTRARIO RESPONDER CON LA SALIDA DE UN OBJETO sin payload data {} 
 - EN LA OPCIÓN type ANEXAR EL TIPO DE METODO HTTP
 - LA PROPIEDAD content EN method ESPECIFICAR EL METODO HTTP
 
-TRUE  - output => {"method":"type", "payload":"success, "error":False}
+TRUE  - output => {"method":"type", "payload":"success", "error":False}
 FALSE - output => {"method":"type", "payload":None, "error":False}
 ```
 <br/>
