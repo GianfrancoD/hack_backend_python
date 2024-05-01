@@ -15,6 +15,8 @@
 ```
 
 ```diff
+* Clonar el repositorio https://github.com/SocialOplesk/hack_backend_python_1.git
+
 * Instalar las dependencias:
   pip install -r requirements.txt 
 
