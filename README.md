@@ -15,13 +15,16 @@
 ```
 
 ```diff
-* Instalar el framework:
-  npm install flask
+* Instalar las dependencias:
+  pip install -r requirements.txt 
 
-* Crear el archivo app.py en modo debug
+* Ejecutar servidor app.py en terminal: flask run --debug
 
-* ejecutar el servidor en terminal: flask run --debug
+* Ejecutar test a nivel global en terminal: pytest -v
 
+* Ejecutar test por cada hack en terminal: pytest -v test_server.py::test_hack_1
+
+* Debes tener en ejecución el servidor app.py para ejecutar correctamente el testing  
 ```
 <br/>
 
