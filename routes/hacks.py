@@ -54,14 +54,16 @@ class Alluser:
     def postlist(self):
         if request.method == 'POST':
             try:
-                email = request.args.get('email')
-                name = request.args.get('name')
-                if email and name:
-                    payload = {'email': email, 'name': name}
-                    return jsonify({'payload': payload}), 201
+                data = request.get_json()
+                if data:
+                    email = request.args.get('email')
+                    name = request.args.get('name')
+                    if email and name:
+                        return jsonify({'status': 'success', 'payload': {'email': email, 'name': name}}), 200
+                    else:
+                        return jsonify({'error': 'Invalid request'}), 400
                 else:
-                    error_response = {'error': 'Invalid request'}
-                    return jsonify(error_response), 400
+                    return jsonify({'error': 'Invalid JSON Payload'}), 400
             except Exception as e:
                 error_response = {'error': str(e)}
                 return jsonify(error_response), 500
@@ -74,15 +76,8 @@ class Alluser:
                 email = request.form.get('email')
                 name = request.form.get('name')
                 id = request.form.get('id')
-
                 if email and name and id:
-                    return jsonify({
-                            'payload' : {
-                                'email': email,
-                                'name': name,
-                                'id': id
-                                }
-                        }), 200
+                    return jsonify({'payload' : {'email': email,'name': name,'id': id }}), 200
                 else:
                     return jsonify({
                         'error': 'error'
@@ -99,12 +94,7 @@ class Alluser:
             email = data["email"]
             name = data["name"]
             id = data["id"]
-            return jsonify({
-                        'payload': {
-                            'email':email, 
-                            'name':name, 
-                            'id':id 
-                                }}), 200
+            return jsonify({'payload': {'email':email, 'name':name, 'id':id }}), 200
         except Exception as e:
             error_response = {
                'error': str(e)
