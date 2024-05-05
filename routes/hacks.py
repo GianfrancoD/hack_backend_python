@@ -1,7 +1,9 @@
 from flask import Blueprint, jsonify, request
+
 class Alluser:
     def __init__(self, blueprint):
         self.blueprint = blueprint
+
 
     def register_route(self):
         self.blueprint.route('/users', methods=['GET'])(self.getter)
@@ -9,7 +11,7 @@ class Alluser:
         self.blueprint.route('/user', methods=['DELETE'])(self.delete)
         self.blueprint.route('/user', methods=['PUT'])(self.puts)
         self.blueprint.route('/api/v1/users', methods=['GET'])(self.getlist)
-        self.blueprint.route('/api/v1/user', methods=['POST'])(self.postlist)
+        self.blueprint.route('/api/v1/user/', methods=['POST'])(self.postlist)
         self.blueprint.route('/api/v1/user/add', methods=['POST'])(self.postagain)
         self.blueprint.route('/api/v1/user/create', methods=['POST'])(self.create_user)
         return self.blueprint
@@ -55,11 +57,14 @@ class Alluser:
         if request.method == 'POST':
             email = request.args.get('email')
             name = request.args.get('name')
-        if email and name:
-            return jsonify({'payload': {'email': email, 'name': name}}), 200
-        else:
-            return jsonify({'error': 'Invalid request'}), 400
-        
+            return jsonify({'payload': {'name': name, 'email': email}}), 200
+            payload = {
+                'email': email,
+                'name': name
+            }
+            return jsonify({'payload': payload})
+    
+            
     """HACK 7"""
     def postagain(self):
         if request.method == 'POST':
@@ -91,3 +96,4 @@ class Alluser:
                'error': str(e)
          }
             return jsonify(error_response), 400
+        
