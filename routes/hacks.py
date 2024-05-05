@@ -53,22 +53,13 @@ class Alluser:
     """POR RESOLVER"""
     def postlist(self):
         if request.method == 'POST':
-            try:
-                data = request.get_json()
-                if data:
-                    email = request.args.get('email')
-                    name = request.args.get('name')
-                    if email and name:
-                        return jsonify({'status': 'success', 'payload': {'email': email, 'name': name}}), 200
-                    else:
-                        return jsonify({'error': 'Invalid request'}), 400
-                else:
-                    return jsonify({'error': 'Invalid JSON Payload'}), 400
-            except Exception as e:
-                error_response = {'error': str(e)}
-                return jsonify(error_response), 500
+            email = request.args.get('email')
+            name = request.args.get('name')
+        if email and name:
+            return jsonify({'payload': {'email': email, 'name': name}}), 200
+        else:
+            return jsonify({'error': 'Invalid request'}), 400
         
-
     """HACK 7"""
     def postagain(self):
         if request.method == 'POST':
