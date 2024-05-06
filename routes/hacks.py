@@ -56,10 +56,15 @@ class Alluser:
     """POR RESOLVER"""
     def postlist(self):
         if request.method == 'POST':
-            email = request.args.get('email')
-            name = request.args.get('name')
-            return jsonify({'payload': {'name': name, 'email': email}}), 200
-    
+            try:
+                email = request.args['email']
+                name = request.args['name']
+                if email and name:
+                    return jsonify({'payload': {'name': name, 'email': email}}), 200
+                else:
+                    return jsonify({'error': 'error'}), 405
+            except Exception as e:
+                return jsonify({'error': str(e)}),500
             
     """HACK 7"""
     def postagain(self):
