@@ -15,6 +15,7 @@ class Alluser:
         self.blueprint.route('/api/v1/user/add', methods=['POST'])(self.postagain)
         self.blueprint.route('/api/v1/user/create', methods=['POST'])(self.create_user)
         return self.blueprint
+        
 
     """HACK 1"""
     def getter(self):
@@ -58,11 +59,6 @@ class Alluser:
             email = request.args.get('email')
             name = request.args.get('name')
             return jsonify({'payload': {'name': name, 'email': email}}), 200
-            payload = {
-                'email': email,
-                'name': name
-            }
-            return jsonify({'payload': payload})
     
             
     """HACK 7"""
