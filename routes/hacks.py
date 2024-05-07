@@ -17,43 +17,43 @@ class Alluser:
         return self.blueprint
         
 
-    """HACK 1"""
+    # HACK 1
     def getter(self):
         if request.method == 'GET':
             return jsonify({'payload': 'success'}), 200
         else:
             return jsonify({'error': 'It is Invalid Request'}), 405
 
-    """HACK 2"""
+    # HACK 2
     def poster(self):
         if request.method == 'POST':
             return jsonify({'payload': 'success'}), 200
         else:
             return jsonify({'error': 'It is Invalid Request'}), 405
     
-    """HACK 3"""
+    # HACK 3
     def delete(self):
         if request.method == 'DELETE':
             return jsonify({'payload': 'success'}), 200
         else:
             return jsonify({'error': 'It is Invalid Request'}), 405
         
-    """HACK 4"""
+    # HACK 4
     def puts(self):
         if request.method == 'PUT':
             return jsonify({'payload': 'success', 'error': False}), 200
         else:
             return jsonify({'error': 'It is Invalid Request'}), 405
         
-    """HACK 5"""
+    # HACK 5
     def getlist(self):
         if request.method == 'GET':
             return jsonify({'payload': []}), 200
         else:
             return jsonify({'error': 'It is Invalid Request'}), 405
         
-    """HACK 6"""
-    """POR RESOLVER"""
+    # HACK 6
+    # POR RESOLVER
     def postlist(self):
         if request.method == 'POST':
             try:
@@ -66,7 +66,7 @@ class Alluser:
             except Exception as e:
                 return jsonify({'error': str(e)}),500
             
-    """HACK 7"""
+    # HACK 7
     def postagain(self):
         if request.method == 'POST':
             try:
@@ -84,7 +84,7 @@ class Alluser:
                         'error': str(e)
                     }), 500
 
-    """HACK 8"""
+    # HACK 8
     def create_user(self):
         try:
             data = request.get_json()
