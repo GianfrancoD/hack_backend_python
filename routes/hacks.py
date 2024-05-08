@@ -57,8 +57,8 @@ class Alluser:
     def postlist(self):
         if request.method == 'POST':
             try:
-                email = request.args['email']
-                name = request.args['name']
+                email = request.args.get('email')
+                name = request.args.get('name')
                 if email and name:
                     return jsonify({'payload': {'name': name, 'email': email}}), 200
                 else:
