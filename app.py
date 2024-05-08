@@ -6,10 +6,10 @@ from routes.hacks import *
 app = Flask(__name__)
 CORS(app)
 
-users = app('users', __name__)
+users = Blueprint('users', __name__)
 all_users = Alluser(users)
 
-app.register_app(all_users.register_route())
+app.register_blueprint(all_users.register_route())
 
     
 if __name__ == "__main__":

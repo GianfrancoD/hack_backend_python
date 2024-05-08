@@ -1,20 +1,20 @@
-from flask import Flask, jsonify, request
+from flask import Blueprint, jsonify, request
 
 class Alluser:
-    def __init__(self, app):
-        self.app = app
+    def __init__(self, blueprint):
+        self.blueprint = blueprint
 
 
     def register_route(self):
-        self.app.route('/users', methods=['GET'])(self.getter)
-        self.app.route('/user', methods=['POST'])(self.poster)
-        self.app.route('/user', methods=['DELETE'])(self.delete)
-        self.app.route('/user', methods=['PUT'])(self.puts)
-        self.app.route('/api/v1/users', methods=['GET'])(self.getlist)
-        self.app.route('/api/v1/user/', methods=['POST'])(self.postlist)
-        self.app.route('/api/v1/user/add', methods=['POST'])(self.postagain)
-        self.app.route('/api/v1/user/create', methods=['POST'])(self.create_user)
-        return self.app
+        self.blueprint.route('/users', methods=['GET'])(self.getter)
+        self.blueprint.route('/user', methods=['POST'])(self.poster)
+        self.blueprint.route('/user', methods=['DELETE'])(self.delete)
+        self.blueprint.route('/user', methods=['PUT'])(self.puts)
+        self.blueprint.route('/api/v1/users', methods=['GET'])(self.getlist)
+        self.blueprint.route('/api/v1/user/', methods=['POST'])(self.postlist)
+        self.blueprint.route('/api/v1/user/add', methods=['POST'])(self.postagain)
+        self.blueprint.route('/api/v1/user/create', methods=['POST'])(self.create_user)
+        return self.blueprint
         
 
     # HACK 1
