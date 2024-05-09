@@ -8,18 +8,18 @@ CORS(app)
 # hack 1
 @app.route('/users', methods=['GET'])
 def getter():
-        if request.method == 'GET':
-            return jsonify({'payload': 'success'}), 200
-        else:
-            return jsonify({'error': 'It is Invalid Request'}), 405
+    if request.method == 'GET':
+        return jsonify({'payload': 'success'}), 200
+    else:
+        return jsonify({'error': 'It is Invalid Request'}), 405
 
 # hack 2
 @app.route('/user', methods=['POST'])
 def poster():
-        if request.method == 'POST':
-            return jsonify({'payload': 'success'}), 200
-        else:
-            return jsonify({'error': 'It is Invalid Request'}), 405
+    if request.method == 'POST':
+        return jsonify({'payload': 'success'}), 200
+    else:
+        return jsonify({'error': 'It is Invalid Request'}), 405
         
 # hack 3
 @app.route('/user', methods=['DELETE'])
@@ -49,49 +49,50 @@ def getlist():
 @app.route('/api/v1/user', methods=['POST']) 
 def postlist():
     if request.method == 'POST':
-        try:
+            print("primer if")
             email = request.args.get('email')
             name = request.args.get('name')
             if email and name:
+                print("segundo if")
                 return jsonify({'payload': {'name': name, 'email': email}}), 200
             else:
+                print("tercer if")
                 return jsonify({'error': 'error'}), 400
-        except Exception as e:
-            return jsonify({'error': str(e)}),500
+print()
 
 # hack 7
 @app.route('/api/v1/user/add', methods=['POST'])
 def postagain():
-        if request.method == 'POST':
-            try:
-                email = request.form.get('email')
-                name = request.form.get('name')
-                id = request.form.get('id')
-                if email and name and id:
-                    return jsonify({'payload' : {'email': email,'name': name,'id': id }}), 200
-                else:
-                    return jsonify({
-                        'error': 'error'
-                        }),405
-            except Exception as e:
+    if request.method == 'POST':
+        try:
+            email = request.form.get('email')
+            name = request.form.get('name')
+            id = request.form.get('id')
+            if email and name and id:
+                return jsonify({'payload' : {'email': email,'name': name,'id': id }}), 200
+            else:
                 return jsonify({
-                        'error': str(e)
-                    }), 500
+                    'error': 'error'
+                    }),405
+        except Exception as e:
+            return jsonify({
+                    'error': str(e)
+                }), 500
 
 # hack 8
 @app.route('/api/v1/user/create', methods=['POST'])
 def create_user():
-        try:
-            data = request.get_json()
-            email = data["email"]
-            name = data["name"]
-            id = data["id"]
-            return jsonify({'payload': {'email':email, 'name':name, 'id':id }}), 200
-        except Exception as e:
-            error_response = {
-               'error': str(e)
-         }
-            return jsonify(error_response), 400
+    try:
+        data = request.get_json()
+        email = data["email"]
+        name = data["name"]
+        id = data["id"]
+        return jsonify({'payload': {'email':email, 'name':name, 'id':id }}), 200
+    except Exception as e:
+        error_response = {
+            'error': str(e)
+        }
+        return jsonify(error_response), 400
     
 if __name__ == "__main__":
     app.run(debug=True)
