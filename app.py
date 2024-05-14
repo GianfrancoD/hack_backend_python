@@ -49,14 +49,11 @@ def getlist():
 @app.route('/api/v1/user', methods=['POST']) 
 def postlist():
     if request.method == 'POST':
-            print("primer if")
             email = request.args.get('email')
             name = request.args.get('name')
             if email and name:
-                print("segundo if")
                 return jsonify({'payload': {'name': name, 'email': email}}), 200
             else:
-                print("tercer if")
                 return jsonify({'error': 'error'}), 400
 
 # hack 7
