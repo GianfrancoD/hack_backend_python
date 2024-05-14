@@ -58,7 +58,6 @@ def postlist():
             else:
                 print("tercer if")
                 return jsonify({'error': 'error'}), 400
-print()
 
 # hack 7
 @app.route('/api/v1/user/add', methods=['POST'])
