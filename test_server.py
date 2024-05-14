@@ -74,14 +74,16 @@ def test_hack_5():
 
 
 def test_hack_6():
-    endpoint = 'http://localhost:5000/api/v1/user?email=foo@foo.foo&name=fooziman'
-    response = requests.post(endpoint)
-    response_json = response.json()
-    assert response.status_code == 200
-    assert response_json['payload'] == {
-                                        'email': 'foo@foo.foo',
-                                        'name': 'fooziman',
-                                    }
+    client = app.test_client()
+    with client:
+        response = client.post('http://localhost:5000/api/v1/user?email=foo@foo.foo&name=fooziman')
+        data = json.loads(response.data)
+        # response_json = response.json()
+        assert response.status_code == 200
+        assert data['payload'] == {
+                                            'email': 'foo@foo.foo',
+                                            'name': 'fooziman',
+                                        }
 
 
 def test_hack_7():
