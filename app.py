@@ -45,7 +45,7 @@ def getlist():
     else:
         return jsonify({'error': 'It is Invalid Request'}), 405
         
-# hack 6 [Por resolver]
+# hack 6
 @app.route('/api/v1/user', methods=['POST']) 
 def postlist():
     if request.method == 'POST':
